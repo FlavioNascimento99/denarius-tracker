@@ -1,5 +1,22 @@
 package edu.ifpb.denarius_tracker.controllers;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import edu.ifpb.denarius_tracker.entities.Categoria;
+import edu.ifpb.denarius_tracker.entities.Comentario;
+import edu.ifpb.denarius_tracker.entities.Conta;
+import edu.ifpb.denarius_tracker.entities.Transacao;
+import edu.ifpb.denarius_tracker.enums.NaturezaCategoria;
 
 @Controller
 @RequestMapping("/transacoes")
