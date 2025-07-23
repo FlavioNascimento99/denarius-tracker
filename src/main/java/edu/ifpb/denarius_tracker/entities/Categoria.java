@@ -1,18 +1,17 @@
 package edu.ifpb.denarius_tracker.entities;
 
 import java.io.Serializable;
-
-import edu.ifpb.denarius_tracker.enums.NaturezaCategoria;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import edu.ifpb.denarius_tracker.enums.NaturezaCategoria;
 
 @Data
 @NoArgsConstructor

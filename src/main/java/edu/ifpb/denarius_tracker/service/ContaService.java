@@ -30,7 +30,7 @@ public class ContaService implements Service<Conta, Integer> {
 
     @Override
     public Conta save(Conta conta) {
-        Correntista correntista = correntistaService.findById(conta.getCorrentista().getId());
+        Correntista correntista = correntistaService.findById(conta.getCorrentista().getId().intValue());
         conta.setCorrentista(correntista);
         return contaRepository.save(conta);
     }

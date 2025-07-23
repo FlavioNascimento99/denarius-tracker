@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.ifpb.denarius_tracker.entities.Correntista;
+import edu.ifpb.denarius_tracker.repository.CorrentistaRepository;
+import edu.ifpb.denarius_tracker.util.PasswordUtil;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
