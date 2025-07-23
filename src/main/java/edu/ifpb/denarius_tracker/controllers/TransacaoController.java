@@ -17,6 +17,9 @@ import edu.ifpb.denarius_tracker.entities.Comentario;
 import edu.ifpb.denarius_tracker.entities.Conta;
 import edu.ifpb.denarius_tracker.entities.Transacao;
 import edu.ifpb.denarius_tracker.enums.NaturezaCategoria;
+import edu.ifpb.denarius_tracker.service.TransacaoService;
+import edu.ifpb.denarius_tracker.service.ContaService;
+import edu.ifpb.denarius_tracker.service.CategoriaService;
 
 @Controller
 @RequestMapping("/transacoes")
