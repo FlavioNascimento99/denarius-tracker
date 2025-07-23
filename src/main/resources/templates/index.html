@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Página Inicial da Aplicação</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/imagens/favicon.ico}" type="image/x-icon" />
+  </head>
+
+  <body>
+    <div>
+      <!-- Cabecalho comum -->
+      <div th:insert="~{cabecalho}"></div>
+
+      <!-- Conteúdo principal -->
+      <div class="conteudo">
+        <div class="caixa">
+          <div class="caixa-titulo">
+            <span>WealthTracker</span>
+          </div>
+          <div class="caixa-corpo">
+            <p>Este é o WealthTracker.</p>
+
+            <div>Como administrador, você poderá:</div>
+            <ul>
+              <li>
+                Adicionar ou consultar correntistas cadastrados usando o menu
+                <strong>Correntistas</strong>
+              </li>
+              <li>
+                Adicionar ou consultar contas cadastradas usando o menu
+                <strong>Contas</strong>
+              </li>
+            </ul>
+            <div>Como cliente, você poderá realizar operações na sua conta:</div>
+            <ul>
+              <li>Realizar créditos</li>
+              <li>Realizar pagamentos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

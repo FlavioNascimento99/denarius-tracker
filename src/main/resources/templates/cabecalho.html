@@ -1,0 +1,36 @@
+<div>
+    <!-- Logo/Header -->
+    <div class="logo-bar">
+      <span class="logo-font">
+        WealthTracker
+      </span>
+    </div>
+  
+    <!-- Menu de Navegação -->
+    <div>
+      <nav class="menu-bar">
+        <div class="menu-links">
+          <a th:classappend="${menu == 'home'} ? 'active'" th:href="@{/home}">Home</a>
+  
+          <a th:classappend="${menu == 'correntista'} ? 'active'" 
+              th:href="@{/correntistas}" 
+                  th:if="${session.usuario != null and  session.usuario.admin}"> Correntistas </a>
+  
+          <a th:classappend="${menu == 'conta'} ? 'active'" 
+              th:href="@{/contas}" 
+              th:if="${session.usuario != null and  session.usuario.admin}">Contas</a>
+  
+          <a th:classappend="${menu == 'transacao'} ? 'active'" class="nav-item nav-link" 
+              th:href="@{/contas/nuconta}">Transações</a>
+        </div>
+        <div class="user-info">
+          <span th:if="${session.usuario != null}" th:text="${session.usuario.email}"></span>
+          <a th:href="@{/auth/logout}">
+            <button class="logout-button">Sair</button>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
