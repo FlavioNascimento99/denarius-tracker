@@ -10,7 +10,7 @@ import edu.ifpb.denarius_tracker.repository.CorrentistaRepository;
 import edu.ifpb.denarius_tracker.util.PasswordUtil;
 
 @Component
-public class CorrentistaService implements Service<Correntista, Integer> {
+public class CorrentistaService implements ServiceGeneric<Correntista, Integer> {
     @Autowired
     private CorrentistaRepository correntistaRepository;
 

@@ -10,7 +10,7 @@ import edu.ifpb.denarius_tracker.entities.Correntista;
 import edu.ifpb.denarius_tracker.repository.ContaRepository;
 
 @Component
-public class ContaService implements Service<Conta, Integer> {
+public class ContaService implements ServiceGeneric<Conta, Integer> {
 
     @Autowired
     private ContaRepository contaRepository;

@@ -10,7 +10,7 @@ import edu.ifpb.denarius_tracker.entities.Transacao;
 import edu.ifpb.denarius_tracker.repository.TransacaoRepository;
 
 @Component
-public class TransacaoService implements Service<Transacao, Integer> {
+public class TransacaoService implements ServiceGeneric<Transacao, Integer> {
 
     @Autowired
     private TransacaoRepository transacaoRepository;

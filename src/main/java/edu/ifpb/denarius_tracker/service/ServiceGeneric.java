@@ -2,7 +2,7 @@ package edu.ifpb.denarius_tracker.service;
 
 import java.util.List;
 
-public interface Service<T, ID> {
+public interface ServiceGeneric<T, ID> {
 
     public List<T> findAll();
 

@@ -49,6 +49,8 @@ public class AuthController {
 
     private Correntista isValido(Correntista correntista) {
         Correntista correntistaBD = correntistaRepo.findByEmail(correntista.getEmail());
+        System.out.println("valor de " + correntistaBD);
+
         boolean valido = false;
         if (correntistaBD != null) {
             if (PasswordUtil.checkPass(correntista.getSenha(), correntistaBD.getSenha())) {
