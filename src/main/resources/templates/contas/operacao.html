@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt_BR" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <title>WealthTracker - Conta e Transações</title>
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/imagens/favicon.ico}" type="image/x-icon" />
+</head>
+
+<body>
+    <div th:insert="~{cabecalho}"></div>
+ 
+    <h1>Conta e Transações</h1>
+
+    <div th:text="${mensagem}" style="color: red"></div>
+
+    <div th:if="${conta == null}">
+        <form th:action="@{/contas/operacao}" method="POST">
+            <label for="nuConta">Número da conta</label>
+            <input type="text" id="nuConta" name="nuConta" class="form-control" />
+            <button type="submit">Próximo</button>
+        </form>
+    </div>
+
+    <div th:if="${conta != null}">
+        <ul>
+            <li>Conta:
+                <span th:text="${conta.numero}"></span>
+            </li>
+            <li>Correntista:
+                <span th:text="${conta.correntista.nome}"></span>
+            </li>
+            <li>Data abertura:
+                <span th:text="${#dates.format(conta.data, 'dd/MM/yyyy')}"></span>
+            </li>
+        </ul>
+
+        <div style="margin-bottom: 30px;"></div>
+
+        <h4>Informações da transação</h4>
+        <hr class="mb-4">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th style="text-align: right">Valor</th>
+                    <th>Movimento</th>
+                    <th>Comentário</th>
+                    <th>Categoria</th>
+                    <th>Natureza</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="transacao : ${conta.transacoes}">
+                    <td th:text="${transacao.descricao}" />
+                    <td th:text="${#dates.format(transacao.data, 'dd/MM/yyyy')}" style="text-align: center;" />
+                    <td th:text="${#numbers.formatCurrency(transacao.valor)}" style="text-align: right" />
+                    <td th:text="${transacao.movimento}" />
+                    <td th:text="${transacao.comentario?.texto ?: ''}" />
+                    <td th:text="${transacao.categoria?.nome ?: ''}" />
+                    <td th:text="${transacao.categoria?.natureza ?: ''}" />
+                    <td>
+                        <a th:href="@{/transacoes/form/{id}(id=${transacao.id}, contaId=${conta.id})}">Editar</a>
+                        <a th:href="@{/transacoes/delete/{id}(id=${transacao.id})}" 
+                           onclick="return confirm('Tem certeza que deseja excluir esta transação?')"
+                           style="margin-left: 10px; color: red;">Deletar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/transacoes/form(contaId=${conta.id})}">Adicionar transação</a>
+    </div>
+</body>
+
+</html>

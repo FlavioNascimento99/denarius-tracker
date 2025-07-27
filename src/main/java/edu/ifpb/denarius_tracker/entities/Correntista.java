@@ -12,9 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @NoArgsConstructor
@@ -32,6 +30,6 @@ public class Correntista implements Serializable {
 
 	private boolean admin;
 
-	@OneToMany(mappedBy="correntista", cascade=CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(mappedBy = "correntista", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Conta> contas = new ArrayList<>();
 }

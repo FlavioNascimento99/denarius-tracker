@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt_BR" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <title>WealthTracker - Contas Cadastradas</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/imagens/favicon.ico}" type="image/x-icon" />
+</head>
+
+<body>
+    <div th:insert="~{cabecalho}"></div>
+
+    <h1>Contas Cadastradas</h1>
+    <hr />
+
+    <form th:action="@{/contas/form}" method="GET">
+        <button class="btn btn-primary" type="submit">Nova</button>
+        <a th:href="@{/home}">Cancelar</a>
+    </form>
+    <br />
+
+    <div th:text="${mensagem}" style="color: red"></div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Descrição</th>
+                <th>Tipo</th>
+                <th>Correntista</th>
+                <th>Dia Fechamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="conta : ${contas}">
+                <td><a th:href="@{/contas/{id}(id=${conta.id})}" th:text="${conta.numero}"></a></td>
+                <td th:text="${conta.descricao}"></td>
+                <td th:text="${conta.tipo}"></td>
+                <td th:text="${conta.correntista.nome}"></td>
+                <td th:text="${#dates.format(conta.data, 'dd/MM/yyyy')}" style="text-align: center;" />
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

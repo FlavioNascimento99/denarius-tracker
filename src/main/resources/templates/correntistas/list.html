@@ -1,0 +1,47 @@
+<html xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Correntistas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/imagens/favicon.ico}" type="image/x-icon" />
+</head>
+
+<body>
+    <div th:insert="~{cabecalho}"></div>
+
+    <h1>Correntistas Cadastrados</h1>
+    <hr />
+
+    <form th:action="@{/correntistas/form}" method="GET">
+        <button class="btn btn-primary" type="submit">Novo</button>
+        <a th:href="@{/home}">Cancelar</a>
+    </form>
+    <br />
+
+
+    <div th:text="${mensagem}" style="color: red"></div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Senha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="correntista : ${correntistas}">
+                <td>[[${correntista.id}]]</td>
+                <td><a th:href="@{/correntistas/{id}(id=${correntista.id})}" th:text="${correntista.nome}"></a></td>
+                <td th:text="${correntista.email}"></td>
+                <td th:text="${correntista.admin}"></td>
+                <td th:text="${#strings.substring(correntista.senha,0,3)} + '...'"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

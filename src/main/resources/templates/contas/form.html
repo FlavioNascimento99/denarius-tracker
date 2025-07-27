@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt_BR" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <title>WealthTracker - Cadastro de Conta</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/imagens/favicon.ico}" type="image/x-icon" />
+</head>
+
+<body>
+    <div th:insert="~{cabecalho}"></div>
+
+    <h1 class="mb-3">Cadastro de conta</h1>
+
+    <form th:action="@{/contas}" method="POST" th:object="${conta}">
+        <input type="hidden" th:field="*{id}" />
+
+        <label for="numero">Número</label>
+        <input type="text" th:field="*{numero}" required /><br /><br />
+
+        <label for="descricao">Descrição</label>
+        <input type="text" th:field="*{descricao}" placeholder="Ex: Minha conta NuBank" required /><br /><br />
+
+        <label for="tipo">Tipo da Conta</label>
+        <select th:field="*{tipo}" id="tipo" onchange="toggleDiaFechamento()" required>
+            <option value="">Selecione o tipo</option>
+            <option value="CORRENTE">Conta Corrente</option>
+            <option value="CARTAO">Cartão de Crédito</option>
+        </select>
+        <br /><br />
+
+        <div id="diaFechamentoDiv" style="display: none;">
+            <label for="lastName">Data</label>
+            <input type="text" th:field="*{data}" /><br /><br />
+            <br /><br />
+        </div>
+
+        <label for="correntista">Correntista</label>
+        <select th:field="*{correntista.id}" required>
+            <option value="">Selecione um correntista</option>
+            <option th:each="cor : ${correntistaItems}" th:value="${cor.id}" th:label="${cor.nome}" />
+        </select>
+        <br /><br />
+
+        <hr>
+
+        <button type="submit">Salvar</button>
+        <a th:href="@{/contas}">Cancelar</a>
+    </form>
+
+    <script>
+        function toggleDiaFechamento() {
+            const tipo = document.getElementById('tipo').value;
+            const diaFechamentoDiv = document.getElementById('diaFechamentoDiv');
+
+            if (tipo === 'CARTAO') {
+                diaFechamentoDiv.style.display = 'block';
+            } else {
+                diaFechamentoDiv.style.display = 'none';
+                // Limpa o campo se não for cartão
+                document.querySelector('input[name="dia_do_fechamento"]').value = '';
+            }
+        }
+
+        // Verifica o estado inicial quando a página carrega
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleDiaFechamento();
+        });
+    </script>
+</body>
+
+</html>

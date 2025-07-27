@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt_BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>WealthTracker - Transações</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/imagens/favicon.ico}" type="image/x-icon" />
+</head>
+
+<body>
+    <div th:insert="~{cabecalho}"></div>
+
+    <form th:action="@{/transacoes}" method="POST" th:object="${transacao}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{conta.id}" />
+        <input type="hidden" th:field="*{comentario.id}" />
+    
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" th:field="*{descricao}" required /> <br />
+    
+        <label for="data">Data</label>
+        <input type="text" th:field="*{data}" /><br />
+    
+        <label for="valor">Valor</label>
+        <input type="number" step="0.01" min="0" class="form-control" th:field="*{valor}" required /><br />
+    
+        <label for="movimento">Movimento</label>
+        <select th:field="*{movimento}" id="movimento" class="form-control" required>
+            <option value="">Selecione o movimento</option>
+            <option value="CREDITO">Crédito</option>
+            <option value="DEBITO">Débito</option>
+        </select><br />
+    
+        <label for="categoria">Categoria</label>
+        <select th:field="*{categoria.id}" id="categoria" class="form-control" required>
+            <option value="">Selecione uma categoria</option>
+            <optgroup label="ENTRADA" th:if="${categoriesEntrada != null and !categoriesEntrada.empty}">
+                <option th:each="categoria : ${categoriesEntrada}" 
+                        th:value="${categoria.id}" 
+                        th:text="${categoria.nome}"
+                        th:selected="${categoria.id == transacao.categoria?.id}">
+                </option>
+            </optgroup>
+            <optgroup label="SAÍDA" th:if="${categoriesSaida != null and !categoriesSaida.empty}">
+                <option th:each="categoria : ${categoriesSaida}" 
+                        th:value="${categoria.id}" 
+                        th:text="${categoria.nome}"
+                        th:selected="${categoria.id == transacao.categoria?.id}">
+                </option>
+            </optgroup>
+            <optgroup label="INVESTIMENTO" th:if="${categoriesInvestimento != null and !categoriesInvestimento.empty}">
+                <option th:each="categoria : ${categoriesInvestimento}" 
+                        th:value="${categoria.id}" 
+                        th:text="${categoria.nome}"
+                        th:selected="${categoria.id == transacao.categoria?.id}">
+                </option>
+            </optgroup>
+        </select><br />
+    
+        <label for="comentario">Comentário</label>
+        <input type="text" class="form-control" th:field="*{comentario.texto}" placeholder="Comentário opcional" /> <br />
+    
+        <button type="submit" class="btn btn-primary">Realizar operação</button>
+    </form>
+
+</body>
+
+</html>

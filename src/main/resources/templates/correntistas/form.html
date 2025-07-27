@@ -1,0 +1,29 @@
+<html xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Correntistas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/imagens/favicon.ico}" type="image/x-icon" />
+</head>
+
+<body>
+    <div th:insert="~{cabecalho}"></div>
+
+    <h1>Cadastro de Correntista</h1>
+
+    <div th:text="${mensagem}" style="color: red"></div>
+
+    <form th:action="@{/correntistas}" method="POST" th:object="${correntista}">
+        <input type="hidden" th:field="*{id}" />
+        
+        Nome: <input type="text" th:field="*{nome}" /><br /><br />
+        
+        Email: <input type="email" th:field="*{email}" /><br /><br />
+        
+        <input type="submit" value="Salvar" />
+        <a th:href="@{/correntistas}">Cancelar</a>
+    </form>
+</body>
+
+</html>
